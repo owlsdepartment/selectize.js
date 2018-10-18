@@ -1529,6 +1529,14 @@
 				result = $.extend(true, {}, self.currentResults);
 			}
 	
+			if (settings.matchExact) {
+				for (i = result.items.length - 1; i >= 0; i--) {
+					if (result.items[i].id.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) !== 0) {
+						result.items.splice(i, 1);
+					}
+				}
+			}
+	
 			// filter out selected items
 			if (settings.hideSelected) {
 				for (i = result.items.length - 1; i >= 0; i--) {
